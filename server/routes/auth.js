@@ -6,6 +6,7 @@ import User from "../models/User.js";
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
 
+
 router.post("/register", async (req, res) => {
   try {
     const { firstName, lastName, idNumber, email, password } = req.body;

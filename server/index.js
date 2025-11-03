@@ -29,10 +29,10 @@ app.use("/api/selections", selectionRoutes);
 //connect to MongoDB and start the server
 async function start() {
   try {
-    if (!MONGO_URI) {
-      console.warn("MONGO_URI is not set. Set it in server/.env to enable database.");
+    if (!MONGO_URI) {//if the MONGO_URI is not set, show a warning
+      console.warn("MONGO_URI is not set");
     } else {
-      await mongoose.connect(MONGO_URI);
+      await mongoose.connect(MONGO_URI);//connect to MongoDB
       console.log("MongoDB connected");
     }
     app.listen(PORT, () => console.log(`Server listening on :${PORT}`));
