@@ -1,11 +1,15 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import Selection from "../models/Selection.js";
-
+//creates a new router for the selections routes
 const router = Router();
+
+//gets the JWT secret from the environment variables or uses a default secret
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
 
+//middleware function to check if the user is authenticated
 function requireAuth(req, res, next) {
+  //gets the authorization header from the request
   const auth = req.headers.authorization || "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
   if (!token) return res.status(401).json({ message: "Missing token" });

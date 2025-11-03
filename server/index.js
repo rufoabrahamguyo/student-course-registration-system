@@ -7,20 +7,26 @@ import selectionRoutes from "./routes/selections.js";
 
 dotenv.config();
 
+// Create an Express application
 const app = express();
 const PORT = process.env.PORT || 5050;
 const MONGO_URI = process.env.MONGO_URI || "";
 
+//allows requests from different origins
 app.use(cors());
+//parses JSON bodies in incoming requests
 app.use(express.json());
 
+//health check endpoint
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
+//mount the auth and selection routes
 app.use("/api/auth", authRoutes);
 app.use("/api/selections", selectionRoutes);
 
+//connect to MongoDB and start the server
 async function start() {
   try {
     if (!MONGO_URI) {

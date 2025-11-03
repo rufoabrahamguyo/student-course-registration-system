@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -44,6 +44,9 @@ export default function Login() {
         <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
         <button type="submit">Login</button>
       </form>
+      <p style={{ marginTop: "1rem", textAlign: "center" }}>
+        Don't have an account? <Link to="/">Register</Link>
+      </p>
     </div>
   );
 }
